@@ -1,0 +1,29 @@
+version: "3.0"
+services:
+  jsonrpc:
+    image: harshjv/testrpc
+
+  explorer:
+    build: explorer
+    depends_on:
+      - jsonrpc
+
+  investment:
+    build: investment_storage 
+    depends_on:
+      - jsonrpc
+  ipfs:
+    build: ipfs
+    ports:
+     - 5001:5001
+
+  scproxy:
+    build: nginx-proxy
+    ports:
+      - 80:80
+    depends_on:
+      - jsonrpc
+      - explorer
+      - investment
+      - ipfs
+
