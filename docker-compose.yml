@@ -4,26 +4,30 @@ services:
     image: harshjv/testrpc
 
   explorer:
+    image: ${DOCKER_HUB_USER}/explorer
     build: explorer
     depends_on:
       - jsonrpc
 
-  investment:
-    build: investment_storage 
+  investors:
+    image: ${DOCKER_HUB_USER}/investors
+    build: investors
     depends_on:
       - jsonrpc
   ipfs:
+    image: ${DOCKER_HUB_USER}/ipfs
     build: ipfs
     ports:
      - 5001:5001
 
-  scproxy:
+  invproxy:
+    image: ${DOCKER_HUB_USER}/invproxy
     build: nginx-proxy
     ports:
       - 80:80
     depends_on:
       - jsonrpc
       - explorer
-      - investment
+      - investors
       - ipfs
 
