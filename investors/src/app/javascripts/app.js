@@ -98,7 +98,7 @@ window.submitDetails = function () {
     var investmentDate = document.getElementById("dtp_input2").value;
     console.log(investmentDate);
     console.log("investmentDate" +investmentDate);
-    var investmentDetails = ("Transaction Contact: "+transactionContact+"\n"+"Investor ID: "+document.getElementById("investorId").value+"\n" + "Investment Date: "+investmentDate+"\n" + "Investment Amount: "+investedAmount+"\n" +"Discount: " +document.getElementById("discount").value+"\n"+"\n");
+    var investmentDetails = ("Transaction Contact: "+transactionContact+"\n"+"Investor ID: "+document.getElementById("investorId").value+"\n" + "Investment Date: "+investmentDate+"\n" + "Investment Amount: "+investmentAmount+"\n" +"Discount: " +document.getElementById("discount").value+"\n"+"\n");
     var investorInfo = ("First Name: "+document.getElementById("firstname").value+"\n" + "Last Name: "+document.getElementById("lastname").value+"\n" +"Phone: "+document.getElementById("phone").value+"\n" + "Email: "+document.getElementById("email").value+"\n" + "Address: "+document.getElementById("address").value+"\n"+"\n");
     var investorDetails = ("Investment Details" +"\n"+investmentDetails+"\n"+"----------------------------"+"\n"+"Investor Info"+"\n"+investorInfo);
 
