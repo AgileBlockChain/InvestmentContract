@@ -21,11 +21,11 @@ window.addEventListener('load', function() {
     })
 })
 
-window.createInvestorRecord = function(transactionContact, investmentDate, investmentAmount, docHash, notePurchaseAgreement, promisoryNote, W_9, investorQuestion) {
+window.createInvestorRecord = function(transactionContact, investmentDate, investmentAmount, docHash, notePurchaseAgreement, promisoryNote, W_9, investorQuestion, investedAmount) {
     var id = document.getElementById("investorId").value;
     Investor.deployed().then(function(instance) {
     console.log(id);
-    return instance.createInvestorRecord(transactionContact, investmentDate, investmentAmount, docHash, notePurchaseAgreement, promisoryNote, W_9, investorQuestion, {from:account, gas:500000}) }).then(function() { 
+    return instance.createInvestorRecord(transactionContact, investmentDate, investmentAmount, docHash, notePurchaseAgreement, promisoryNote, W_9, investorQuestion, investedAmount, {from:account, gas:500000}) }).then(function() { 
         getRecord(id);
     })
 }
@@ -95,10 +95,12 @@ window.fileCreate = function (data, callback) {
 window.submitDetails = function () {
     var transactionContact = document.getElementById("transactionContact").value;
     var investmentAmount = document.getElementById("investedAmount").value;
+    var investedAmount = document.getElementById("investmentAmount").value;
     var investmentDate = document.getElementById("dtp_input2").value;
     console.log(investmentDate);
     console.log("investmentDate" +investmentDate);
     var investmentDetails = ("Transaction Contact: "+transactionContact+"\n"+"Investor ID: "+document.getElementById("investorId").value+"\n" + "Investment Date: "+investmentDate+"\n" + "Investment Amount: "+investmentAmount+"\n" +"Discount: " +document.getElementById("discount").value+"\n"+"\n");
+    console.log(investmentDetails);
     var investorInfo = ("First Name: "+document.getElementById("firstname").value+"\n" + "Last Name: "+document.getElementById("lastname").value+"\n" +"Phone: "+document.getElementById("phone").value+"\n" + "Email: "+document.getElementById("email").value+"\n" + "Address: "+document.getElementById("address").value+"\n"+"\n");
     var investorDetails = ("Investment Details" +"\n"+investmentDetails+"\n"+"----------------------------"+"\n"+"Investor Info"+"\n"+investorInfo);
 
@@ -119,7 +121,7 @@ window.submitDetails = function () {
               var hashFile = (docHash +"\n"+ notePurchaseAgreement +"\n"+ promisoryNote +"\n"+ W_9 +"\n"+ investorQuestion);
               console.log("All Hash:"+"\n"+docHash +"\n"+ notePurchaseAgreement +"\n"+ promisoryNote +"\n"+ W_9 +"\n"+ investorQuestion);
               console.log(transactionContact, investmentDate, investmentAmount);
-              createInvestorRecord(transactionContact, investmentDate, investmentAmount, docHash, notePurchaseAgreement, promisoryNote, W_9, investorQuestion);
+              createInvestorRecord(transactionContact, investmentDate, investmentAmount, docHash, notePurchaseAgreement, promisoryNote, W_9, investorQuestion, investedAmount);
             })
           })
         })
